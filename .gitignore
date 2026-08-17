@@ -1,0 +1,39 @@
+# Node
+node_modules/
+
+# Build
+dist/
+build/
+.next/
+out/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.local
+.env.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/settings.json
+
+# Coverage
+coverage/
+
+# Temporary
+tmp/
+temp/
+
+# Cache
+.cache/
+
+# TypeScript
+*.tsbuildinfo
+
+# pnpm
+pnpm-debug.log*
