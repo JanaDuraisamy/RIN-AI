@@ -2,6 +2,7 @@ import {
   ServiceRegistryError,
   type CompatibilityInfo,
   type EventBus,
+  type MemoryEngine,
   type RuntimeHealthStatus,
   type RuntimeHealthSummary,
   type RuntimeVersionInfo,
@@ -20,6 +21,7 @@ import { RUNTIME_VERSION, VersionService } from './version.js';
 export interface RinCoreOptions {
   eventBus: EventBus;
   configuration?: ConfigurationService;
+  memoryEngine?: MemoryEngine;
   classifier?: ErrorClassifier;
   retryPolicy?: RetryPolicy;
 }
@@ -34,12 +36,14 @@ export class RinCore {
   readonly errorCoordinator: ErrorCoordinator;
   readonly requestRouter: RequestRouter;
   readonly eventBus: EventBus;
+  readonly memoryEngine: MemoryEngine | null;
 
   private initialized = false;
 
   constructor(options: RinCoreOptions) {
     this.eventBus = options.eventBus;
     this.configuration = options.configuration ?? new ConfigurationService();
+    this.memoryEngine = options.memoryEngine ?? null;
     this.registry = new InMemoryServiceRegistry();
     this.lifecycle = new RuntimeLifecycle();
     this.stateMachine = new RuntimeStateMachine();
@@ -145,6 +149,14 @@ export class RinCore {
       version: RUNTIME_VERSION,
       instance: this.version,
     });
+    if (this.memoryEngine !== null) {
+      this.registry.register({
+        name: 'memory',
+        version: RUNTIME_VERSION,
+        instance: this.memoryEngine,
+      });
+      this.health.setServiceStatus('memory', 'healthy');
+    }
     this.health.setServiceStatus('event-bus', 'healthy');
     this.health.setServiceStatus('configuration', 'healthy');
     this.health.setServiceStatus('version', 'healthy');

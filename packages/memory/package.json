@@ -1,7 +1,7 @@
 {
-  "name": "@rin/core",
+  "name": "@rin/memory",
   "version": "0.1.0",
-  "description": "RIN runtime core: lifecycle, runtime state, service registry, health, configuration, version, error recovery, and request routing.",
+  "description": "In-memory Memory Engine implementing the RIN Memory API: create, retrieve, update, archive, remove, validate, classification, and version history.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -26,8 +26,6 @@
     "@rin/types": "workspace:*"
   },
   "devDependencies": {
-    "@rin/event-bus": "workspace:*",
-    "@rin/memory": "workspace:*",
     "@types/node": "^24.0.0",
     "typescript": "^5.9.0",
     "vitest": "^3.2.0"

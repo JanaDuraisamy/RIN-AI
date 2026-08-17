@@ -139,6 +139,7 @@ export interface IpcRequestEnvelope {
 export * from './configuration.js';
 export * from './event-bus.js';
 export * from './health.js';
+export * from './memory.js';
 export * from './runtime.js';
 export * from './service-registry.js';
 export * from './version.js';

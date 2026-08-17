@@ -12,6 +12,7 @@ export default defineConfig({
       '@rin/event-bus': fileURLToPath(
         new URL('./packages/event-bus/src/index.ts', import.meta.url),
       ),
+      '@rin/memory': fileURLToPath(new URL('./packages/memory/src/index.ts', import.meta.url)),
     },
   },
   test: {
