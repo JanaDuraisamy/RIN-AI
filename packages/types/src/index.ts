@@ -135,3 +135,10 @@ export interface IpcRequestEnvelope {
   timestamp: string;
   sessionId: string;
 }
+
+export * from './configuration.js';
+export * from './event-bus.js';
+export * from './health.js';
+export * from './runtime.js';
+export * from './service-registry.js';
+export * from './version.js';

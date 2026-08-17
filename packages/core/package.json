@@ -1,0 +1,34 @@
+{
+  "name": "@rin/core",
+  "version": "0.1.0",
+  "description": "RIN runtime core: lifecycle, runtime state, service registry, health, configuration, version, error recovery, and request routing.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": "^24.0.0"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@rin/types": "workspace:*"
+  },
+  "devDependencies": {
+    "@rin/event-bus": "workspace:*",
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  }
+}
