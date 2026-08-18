@@ -9,6 +9,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '@rin/types': fileURLToPath(new URL('./packages/types/src/index.ts', import.meta.url)),
+      '@rin/ai-router': fileURLToPath(
+        new URL('./packages/ai-router/src/index.ts', import.meta.url),
+      ),
       '@rin/event-bus': fileURLToPath(
         new URL('./packages/event-bus/src/index.ts', import.meta.url),
       ),

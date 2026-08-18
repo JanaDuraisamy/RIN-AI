@@ -1,7 +1,7 @@
 {
-  "name": "@rin/core",
+  "name": "@rin/ai-router",
   "version": "0.1.0",
-  "description": "RIN runtime core: lifecycle, runtime state, service registry, health, configuration, version, error recovery, and request routing.",
+  "description": "Provider-neutral AI Router implementing the locked routing spine: intake, context, classification, memory relevance, reasoning strategy, agent coordination, permission, and unified response.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -26,8 +26,6 @@
     "@rin/types": "workspace:*"
   },
   "devDependencies": {
-    "@rin/ai-router": "workspace:*",
-    "@rin/event-bus": "workspace:*",
     "@rin/memory": "workspace:*",
     "@rin/security": "workspace:*",
     "@types/node": "^24.0.0",

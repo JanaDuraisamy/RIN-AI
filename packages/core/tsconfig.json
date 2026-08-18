@@ -2,6 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "paths": {
+      "@rin/ai-router": ["../ai-router/src/index.ts"],
       "@rin/event-bus": ["../event-bus/src/index.ts"],
       "@rin/memory": ["../memory/src/index.ts"],
       "@rin/security": ["../security/src/index.ts"],

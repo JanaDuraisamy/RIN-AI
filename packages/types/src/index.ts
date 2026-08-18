@@ -136,6 +136,7 @@ export interface IpcRequestEnvelope {
   sessionId: string;
 }
 
+export * from './ai-router.js';
 export * from './audit.js';
 export * from './configuration.js';
 export * from './event-bus.js';

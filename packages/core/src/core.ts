@@ -1,5 +1,6 @@
 import {
   ServiceRegistryError,
+  type AIRouter,
   type AuditSink,
   type CompatibilityInfo,
   type EventBus,
@@ -28,6 +29,7 @@ export interface RinCoreOptions {
   permissionEvaluator?: PermissionEvaluator;
   permissionRegistry?: PermissionRegistry;
   auditSink?: AuditSink;
+  aiRouter?: AIRouter;
   classifier?: ErrorClassifier;
   retryPolicy?: RetryPolicy;
 }
@@ -46,6 +48,7 @@ export class RinCore {
   readonly permissionEvaluator: PermissionEvaluator | null;
   readonly permissionRegistry: PermissionRegistry | null;
   readonly auditSink: AuditSink | null;
+  readonly aiRouter: AIRouter | null;
 
   private initialized = false;
 
@@ -56,6 +59,7 @@ export class RinCore {
     this.permissionEvaluator = options.permissionEvaluator ?? null;
     this.permissionRegistry = options.permissionRegistry ?? null;
     this.auditSink = options.auditSink ?? null;
+    this.aiRouter = options.aiRouter ?? null;
     this.registry = new InMemoryServiceRegistry();
     this.lifecycle = new RuntimeLifecycle();
     this.stateMachine = new RuntimeStateMachine();
@@ -184,6 +188,14 @@ export class RinCore {
         instance: this.auditSink,
       });
       this.health.setServiceStatus('audit', 'healthy');
+    }
+    if (this.aiRouter !== null) {
+      this.registry.register({
+        name: 'ai-router',
+        version: RUNTIME_VERSION,
+        instance: this.aiRouter,
+      });
+      this.health.setServiceStatus('ai-router', 'healthy');
     }
     this.health.setServiceStatus('event-bus', 'healthy');
     this.health.setServiceStatus('configuration', 'healthy');
