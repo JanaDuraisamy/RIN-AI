@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@rin/types": ["../types/src/index.ts"],
+      "@rin/ai-router": ["../ai-router/src/index.ts"],
+      "@rin/security": ["../security/src/index.ts"]
+    }
+  },
+  "include": ["src"]
+}
