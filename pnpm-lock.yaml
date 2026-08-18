@@ -45,6 +45,9 @@ importers:
       '@rin/memory':
         specifier: workspace:*
         version: link:../memory
+      '@rin/security':
+        specifier: workspace:*
+        version: link:../security
       '@types/node':
         specifier: ^24.0.0
         version: 24.13.3
@@ -74,6 +77,25 @@ importers:
         specifier: workspace:*
         version: link:../types
     devDependencies:
+      '@types/node':
+        specifier: ^24.0.0
+        version: 24.13.3
+      typescript:
+        specifier: ^5.9.0
+        version: 5.9.3
+      vitest:
+        specifier: ^3.2.0
+        version: 3.2.7(@types/node@24.13.3)(supports-color@7.2.0)
+
+  packages/security:
+    dependencies:
+      '@rin/types':
+        specifier: workspace:*
+        version: link:../types
+    devDependencies:
+      '@rin/memory':
+        specifier: workspace:*
+        version: link:../memory
       '@types/node':
         specifier: ^24.0.0
         version: 24.13.3

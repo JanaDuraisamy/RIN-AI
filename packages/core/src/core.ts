@@ -1,8 +1,11 @@
 import {
   ServiceRegistryError,
+  type AuditSink,
   type CompatibilityInfo,
   type EventBus,
   type MemoryEngine,
+  type PermissionEvaluator,
+  type PermissionRegistry,
   type RuntimeHealthStatus,
   type RuntimeHealthSummary,
   type RuntimeVersionInfo,
@@ -22,6 +25,9 @@ export interface RinCoreOptions {
   eventBus: EventBus;
   configuration?: ConfigurationService;
   memoryEngine?: MemoryEngine;
+  permissionEvaluator?: PermissionEvaluator;
+  permissionRegistry?: PermissionRegistry;
+  auditSink?: AuditSink;
   classifier?: ErrorClassifier;
   retryPolicy?: RetryPolicy;
 }
@@ -37,6 +43,9 @@ export class RinCore {
   readonly requestRouter: RequestRouter;
   readonly eventBus: EventBus;
   readonly memoryEngine: MemoryEngine | null;
+  readonly permissionEvaluator: PermissionEvaluator | null;
+  readonly permissionRegistry: PermissionRegistry | null;
+  readonly auditSink: AuditSink | null;
 
   private initialized = false;
 
@@ -44,6 +53,9 @@ export class RinCore {
     this.eventBus = options.eventBus;
     this.configuration = options.configuration ?? new ConfigurationService();
     this.memoryEngine = options.memoryEngine ?? null;
+    this.permissionEvaluator = options.permissionEvaluator ?? null;
+    this.permissionRegistry = options.permissionRegistry ?? null;
+    this.auditSink = options.auditSink ?? null;
     this.registry = new InMemoryServiceRegistry();
     this.lifecycle = new RuntimeLifecycle();
     this.stateMachine = new RuntimeStateMachine();
@@ -156,6 +168,22 @@ export class RinCore {
         instance: this.memoryEngine,
       });
       this.health.setServiceStatus('memory', 'healthy');
+    }
+    if (this.permissionEvaluator !== null) {
+      this.registry.register({
+        name: 'permission',
+        version: RUNTIME_VERSION,
+        instance: this.permissionEvaluator,
+      });
+      this.health.setServiceStatus('permission', 'healthy');
+    }
+    if (this.auditSink !== null) {
+      this.registry.register({
+        name: 'audit',
+        version: RUNTIME_VERSION,
+        instance: this.auditSink,
+      });
+      this.health.setServiceStatus('audit', 'healthy');
     }
     this.health.setServiceStatus('event-bus', 'healthy');
     this.health.setServiceStatus('configuration', 'healthy');

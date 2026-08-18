@@ -1,7 +1,7 @@
 {
-  "name": "@rin/core",
+  "name": "@rin/security",
   "version": "0.1.0",
-  "description": "RIN runtime core: lifecycle, runtime state, service registry, health, configuration, version, error recovery, and request routing.",
+  "description": "RIN Security Foundation: fail-closed permission evaluation, in-memory policy registry, and content-free audit logging.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -26,9 +26,7 @@
     "@rin/types": "workspace:*"
   },
   "devDependencies": {
-    "@rin/event-bus": "workspace:*",
     "@rin/memory": "workspace:*",
-    "@rin/security": "workspace:*",
     "@types/node": "^24.0.0",
     "typescript": "^5.9.0",
     "vitest": "^3.2.0"
