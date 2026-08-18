@@ -514,10 +514,15 @@ Constitution wording for any future Agent Manager expansion shall be proposed an
 - Single audit entry per request and requestId = traceId mapping: AI Router implementation precedent.
 - Fail-closed permission posture: locked PermissionEvaluator behavior.
 
+## Ratified under Contract Lock
+
+- Permission mapping (Decision 2): caller agent-manager; action agent-manager:coordinate; resource agent-manager — OWNER-APPROVED BETA DEFAULT.
+- Audit mapping (Decision 3): actor agent-manager; action agent-manager:coordinate; resource agent-manager; requestId propagated from traceId where available; content-free AuditSink semantics — OWNER-APPROVED BETA DEFAULT.
+
 ## Unresolved
 
 - Engineering Laws, Best Practices, Anti-Patterns, Engineering Checklist, Future Evolution, and Official Constitution content for the Agent Manager API: UNRESOLVED AUTHORITY.
-- Task payload, capability metadata and matching, assignment algorithm, selection rules, lifecycle state authority, concurrency, retry, timeout, cancellation, escalation, Event Bus events, permission strings, and audit mapping: UNRESOLVED / DEFERRED as marked above.
+- Task payload, capability metadata and matching, assignment algorithm, selection rules, lifecycle state authority, concurrency, retry, timeout, cancellation, escalation, and Event Bus events: UNRESOLVED / DEFERRED as marked above.
 
 ---
 
