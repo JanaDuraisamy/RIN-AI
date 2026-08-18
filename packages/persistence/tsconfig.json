@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@rin/security": ["../security/src/index.ts"],
+      "@rin/types": ["../types/src/index.ts"]
+    }
+  },
+  "include": ["src"]
+}
