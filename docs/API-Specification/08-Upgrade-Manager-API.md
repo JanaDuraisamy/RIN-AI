@@ -276,9 +276,9 @@ LOCKED ARCHITECTURE DIRECTION (Phase 9 Step 3 Decision U8; ratified at Phase 9 S
 - Future conceptual semantics: graceful shutdown → runtime re-initialization.
 - Existing shutdown safety principles preserved (Volume-06/02 Graceful Shutdown: stop new requests, finish active tasks, save runtime state, flush logs, close resources, shutdown Core).
 
-Current state: "Restart Runtime" is documented as a Core API Runtime Lifecycle responsibility (01-Core-API.md) but is NOT implemented in RuntimeLifecycle (graceful-shutdown is terminal; reset() re-initializes the lifecycle object only).
+Current state: "Restart Runtime" is documented as a Core API Runtime Lifecycle responsibility (01-Core-API.md). The guarded Core-owned restart seam is IMPLEMENTED (RinCore.restartSeam, Phase 10 R3; 01-Core-Restart-API.md). RuntimeLifecycle itself has no restart transition by design (U8): graceful-shutdown is terminal; reset() re-initializes the lifecycle object only and is NOT a full runtime restart.
 
-Classification: LOCKED (direction, ratified Phase 9 Step 8) / NOT IMPLEMENTED / DEFERRED (restart implementation).
+Classification: LOCKED (direction, ratified Phase 9 Step 8) / IMPLEMENTED (guarded Core-owned restart seam, Phase 10 R3) / NOT SPECIFIED (restart scheduling, queueing, rate limiting, concurrency semantics, and result payload shape; see 01-Core-Restart-API.md).
 
 ---
 
@@ -506,7 +506,7 @@ Status: LOCKED — RATIFIED PHASE 9 STEP 8 (rollback distinction; application-le
 
 Resolution: Core owns runtime restart. Future semantics: graceful shutdown to runtime re-initialization. Existing shutdown safety principles preserved. Restart not implemented in this step; no lifecycle states or transitions added.
 
-Status: LOCKED — RATIFIED PHASE 9 STEP 8 (Core restart ownership and semantics direction; restart implementation DEFERRED / NOT IMPLEMENTED; RuntimeLifecycle.reset() is NOT a full runtime restart).
+Status: LOCKED — RATIFIED PHASE 9 STEP 8 (Core restart ownership and semantics direction; RuntimeLifecycle.reset() is NOT a full runtime restart). The guarded restart seam was IMPLEMENTED separately under Phase 10 R3 (01-Core-Restart-API.md); upgrade-chain/upgrade-orchestration restart remains NOT IMPLEMENTED.
 
 ## Decision U9: Upgrade State Persistence
 
@@ -541,7 +541,7 @@ Status: LOCKED — RATIFIED PHASE 9 STEP 8 (product / UX direction; implementati
 | Rollback source format | Open | UNRESOLVED / NOT SPECIFIED | backup policy basis only | Future contract decision |
 | Migration mechanism | Locked | DOCUMENTED (LOCKED) | MigrationRunner | Existing |
 | App-version to schema-version linkage | Open | NOT SPECIFIED | none | Future contract requirement |
-| Restart semantics | Direction | LOCKED (U8; Core-owned); implementation DEFERRED / NOT IMPLEMENTED | U8; 01-Core-API.md Restart Runtime | Ratified Phase 9 Step 8 |
+| Restart semantics | Direction | LOCKED (U8; Core-owned); guarded restart seam IMPLEMENTED (Phase 10 R3); upgrade-chain restart NOT IMPLEMENTED | U8; 01-Core-API.md Restart Runtime; 01-Core-Restart-API.md | Ratified Phase 9 Step 8 |
 | Apply execution | Closed | BLOCKED / PROHIBITED (uncontrolled) | V6-06 restored doc-only; laws UNRESOLVED AUTHORITY; Volume-10/01 | Not applicable |
 | Application rollback | Open | DEFERRED / NOT SPECIFIED | rollback policy law only | Ratified Phase 9 Step 8 (U7 direction) |
 | Checkpoint | Open | NOT SPECIFIED | none | Not applicable |
@@ -569,7 +569,7 @@ Upgrade Manager implementation remains blocked until:
 1. Remaining unresolved contract decisions (integrity mechanism, rollback source format, version linkage, checkpoint semantics, application-level rollback contract, upgrade event names, upgrade error codes) are resolved or explicitly deferred.
 2. Implementation scope is separately authorized by the Primary Owner.
 
-The locked contract must NOT be interpreted as permission to: create an Upgrade Manager package; add an upgrade executor; modify Core; implement restart; implement rollback; implement checkpoint; modify persistence; add Event Bus events; implement Voice; implement Action Engine; or enable autonomous self-modification.
+The locked contract must NOT be interpreted as permission to: create an Upgrade Manager package; add an upgrade executor; modify Core; implement rollback; implement checkpoint; modify persistence; add Event Bus events; implement Voice; implement Action Engine; or enable autonomous self-modification. (Runtime restart was implemented only under the separate locked Core Restart Seam contract 01-Core-Restart-API.md, Phase 10 R3; this contract does not authorize restart.)
 
 The locked minimal boundary is limited to the boundary representation described by this contract. upgrade:plan and upgrade:apply do not authorize arbitrary upgrade execution. Any future protected operation requires its own explicitly authorized taxonomy.
 
@@ -655,7 +655,7 @@ The implementation is read-only and non-modifying.
 - checkpoint
 - application rollback
 - restore execution
-- runtime restart
+- runtime restart (Core-owned; implemented only under the separate 01-Core-Restart-API.md contract — not by Upgrade Manager)
 - lifecycle changes
 - database migration execution through Upgrade Manager
 - upgrade-state persistence
@@ -679,7 +679,7 @@ The implementation is read-only and non-modifying.
 | U5 | LOCKED / prohibition preserved; controlled boundary remains non-executing |
 | U6 | LOCKED / target metadata represented; unresolved mechanisms remain unresolved |
 | U7 | LOCKED / rollback distinction preserved; no rollback implementation |
-| U8 | LOCKED / Core restart ownership preserved; restart not implemented |
+| U8 | LOCKED / Core restart ownership preserved; guarded restart seam implemented (Phase 10 R3) |
 | U9 | LOCKED / persistence expansion remains deferred |
 | U10 | LOCKED / voice remains conceptual only |
 
@@ -727,7 +727,7 @@ Phase 9 Step 13 verified results:
 
 Phase 9 Step 14 implementation lock is complete. The next work requires a NEW authorization.
 
-Potential future work (NOT started): commit/push of accumulated Phase 9 changes; broader upgrade lifecycle implementation; integrity mechanism decision; rollback/checkpoint contract; restart implementation; Action Engine restoration; controlled Apply execution; post-upgrade verification/health; application rollback; voice-first upgrade UX.
+Potential future work (NOT started): commit/push of accumulated Phase 9 changes; broader upgrade lifecycle implementation; integrity mechanism decision; rollback/checkpoint contract; Action Engine restoration; controlled Apply execution; post-upgrade verification/health; application rollback; voice-first upgrade UX.
 
 ---
 
