@@ -240,7 +240,7 @@ Classification: DOCUMENTED (backup/restore policy) / LOCKED (U7 distinction, rat
 
 This section is a boundary statement only.
 
-- Execution is: OWNER-APPROVED DIRECTION (U5 controlled-upgrade exception path), BLOCKED / NOT IMPLEMENTABLE (Action Engine chapter truncated, Volume-06/06; no execution mechanism exists), and PROHIBITED for uncontrolled self-modification (Volume-10/01: "Artificial Intelligence shall improve through engineering validation rather than uncontrolled self-modification").
+- Execution is: OWNER-APPROVED DIRECTION (U5 controlled-upgrade exception path), BLOCKED / NOT IMPLEMENTABLE (Action Engine chapter Volume-06/06 restored documentation-only in Phase 10; Engineering Laws UNRESOLVED AUTHORITY; no execution mechanism exists), and PROHIBITED for uncontrolled self-modification (Volume-10/01: "Artificial Intelligence shall improve through engineering validation rather than uncontrolled self-modification").
 
 No executor, updater, downloader, installer, package manager, or registry client is defined.
 
@@ -315,7 +315,7 @@ Classification: DERIVED (envelope patterns).
 - Database backup and restore: DOCUMENTED policy.
 - Application-level upgrade rollback: NOT SPECIFIED as a contract; DEFERRED (Owner Decision U7).
 - Runtime checkpoint: NOT SPECIFIED.
-- Failed-upgrade recovery: NOT SPECIFIED (Error Recovery chapter Volume-06/14 truncated; ErrorCoordinator supports retry/recover/safe-mode only — no restore strategy).
+- Failed-upgrade recovery: NOT SPECIFIED (Error Recovery chapter Volume-06/14 restored documentation-only in Phase 10; laws truncated at Law 1; ErrorCoordinator supports retry/recover/safe-mode only — no restore strategy).
 
 Database rollback is not application rollback. Rollback implementation is not authorized.
 
@@ -542,13 +542,13 @@ Status: LOCKED — RATIFIED PHASE 9 STEP 8 (product / UX direction; implementati
 | Migration mechanism | Locked | DOCUMENTED (LOCKED) | MigrationRunner | Existing |
 | App-version to schema-version linkage | Open | NOT SPECIFIED | none | Future contract requirement |
 | Restart semantics | Direction | LOCKED (U8; Core-owned); implementation DEFERRED / NOT IMPLEMENTED | U8; 01-Core-API.md Restart Runtime | Ratified Phase 9 Step 8 |
-| Apply execution | Closed | BLOCKED / PROHIBITED (uncontrolled) | Volume-06/06 truncated; Volume-10/01 | Not applicable |
+| Apply execution | Closed | BLOCKED / PROHIBITED (uncontrolled) | V6-06 restored doc-only; laws UNRESOLVED AUTHORITY; Volume-10/01 | Not applicable |
 | Application rollback | Open | DEFERRED / NOT SPECIFIED | rollback policy law only | Ratified Phase 9 Step 8 (U7 direction) |
 | Checkpoint | Open | NOT SPECIFIED | none | Not applicable |
 | Upgrade-state persistence | Deferred | LOCKED DEFERMENT (U9) | U9; Phase 5 lock | Ratified Phase 9 Step 8 |
 | Event Bus integration | Open | DEFERRED | directional statement only | Not applicable |
 | Voice / hands-free flow | Direction | LOCKED PRODUCT / UX DIRECTION (U10); implementation DEFERRED | U10; Volume-06/05 narrative | Ratified Phase 9 Step 8 |
-| Action Engine contract | Closed | BLOCKED | Volume-06/06 truncated | Not applicable |
+| Action Engine contract | Closed | BLOCKED | V6-06 restored doc-only; no Action Engine contract | Not applicable |
 | Implementation lock | Locked | RATIFIED (Phase 9 Step 14) | Phase 9 Step 13 review PASS | Ratified Phase 9 Step 14 |
 
 Distinction convention: LOCKED = contract/policy locked (Phase 9 Step 8 or previously); DEFERRED = implementation deferred; NOT SPECIFIED = mechanism unspecified; BLOCKED = subsystem blocked.

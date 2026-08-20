@@ -18,6 +18,7 @@
 8. AI Router API
 9. Upgrade Manager API
 10. Agent Manager API
+11. Core Restart API
 
 ---
 

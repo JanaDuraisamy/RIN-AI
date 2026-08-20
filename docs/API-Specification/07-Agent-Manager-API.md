@@ -255,7 +255,7 @@ Classification: OUT OF SCOPE / DEFERRED.
 
 - The Action Agent appears only as a naming reference in the Volume-06/08 internal architecture diagram.
 - No Router to Action or Agent to Action contract is defined by this specification.
-- The Action Engine chapter (Volume-06/06) remains truncated and unrestored.
+- The Action Engine chapter (Volume-06/06) was restored documentation-only in Phase 10; its Engineering Laws remain truncated at Law 1 (UNRESOLVED AUTHORITY). No Action Engine contract or execution mechanism exists.
 
 Classification: BLOCKED — DO NOT IMPLEMENT.
 
@@ -461,7 +461,7 @@ Status: OWNER-APPROVED BETA SCOPE.
 | Concurrency / retry / timeout / cancellation / escalation | Open | DEFERRED | none | Not applicable (deferred) |
 | Event Bus integration | Open | DEFERRED | directional statement only | Not applicable (deferred) |
 | Persistence | Closed | OUT OF SCOPE | Phase 5 lock | Existing |
-| Action Engine contract | Closed | BLOCKED | V6-06 truncated | Not applicable |
+| Action Engine contract | Closed | BLOCKED | V6-06 restored doc-only; laws UNRESOLVED AUTHORITY; no contract | Not applicable |
 
 ---
 
