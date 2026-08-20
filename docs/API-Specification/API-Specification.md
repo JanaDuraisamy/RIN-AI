@@ -16,7 +16,8 @@
 6. Event Bus API
 7. IPC API
 8. AI Router API
-9. Agent Manager API
+9. Upgrade Manager API
+10. Agent Manager API
 
 ---
 

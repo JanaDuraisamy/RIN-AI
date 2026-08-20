@@ -181,6 +181,25 @@ importers:
         specifier: ^3.2.0
         version: 3.2.7(@types/node@24.13.3)(supports-color@7.2.0)
 
+  packages/upgrade-manager:
+    dependencies:
+      '@rin/types':
+        specifier: workspace:*
+        version: link:../types
+    devDependencies:
+      '@rin/security':
+        specifier: workspace:*
+        version: link:../security
+      '@types/node':
+        specifier: ^24.0.0
+        version: 24.13.3
+      typescript:
+        specifier: ^5.9.0
+        version: 5.9.3
+      vitest:
+        specifier: ^3.2.0
+        version: 3.2.7(@types/node@24.13.3)(supports-color@7.2.0)
+
 packages:
 
   '@ampproject/remapping@2.3.0':
