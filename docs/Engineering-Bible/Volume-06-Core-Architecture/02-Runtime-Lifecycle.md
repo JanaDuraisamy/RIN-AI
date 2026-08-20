@@ -165,5 +165,79 @@ Unexpected failures shall trigger recovery procedures rather than uncontrolled t
 
 # Best Practices
 
-- Validate every subsystem before activation
-```
+- Validate every subsystem before activation.
+- Follow deterministic initialization order.
+- Verify the Core is ready before any engine starts.
+- Preserve runtime state consistency throughout operation.
+- Ensure graceful shutdown preserves system integrity.
+- Trigger recovery procedures on unexpected failure instead of uncontrolled termination.
+
+---
+
+# Anti-Patterns
+
+Avoid:
+
+- Initializing engines before the Core is ready.
+- Non-deterministic initialization order.
+- Inconsistent runtime state.
+- Uncontrolled termination on unexpected failure.
+- Shutdown that loses data or leaves resources open.
+
+---
+
+# Failure Recovery
+
+If the runtime fails unexpectedly:
+
+1. Detect the failure.
+2. Classify the failure.
+3. Trigger recovery procedures.
+4. Preserve system integrity.
+5. Notify the RIN Core.
+
+---
+
+# Engineering Checklist
+
+Before modifying the Runtime Lifecycle:
+
+- Is initialization order deterministic?
+- Is the Core ready before engines start?
+- Is runtime state consistent?
+- Does shutdown preserve integrity?
+- Are recovery procedures available for unexpected failures?
+
+---
+
+# Future Evolution
+
+The Runtime Lifecycle shall evolve to support:
+
+- Startup verification enhancements
+- Health-aware shutdown coordination
+- Recovery-aware lifecycle transitions
+
+Future evolution shall preserve deterministic initialization, runtime state consistency, and shutdown integrity.
+
+---
+
+# Official Constitution
+
+UNRESOLVED AUTHORITY: The official constitution text of this chapter is not recoverable from repository evidence. It requires Primary Owner authority and is not fabricated in this restoration.
+
+---
+
+# Documentation Status
+
+This chapter was restored during Phase 10 D2 documentation restoration (Owner-authorized).
+
+Restored sections (Best Practices completion, Anti-Patterns, Failure Recovery, Engineering Checklist, Future Evolution) follow the established chapter structure of sibling chapters within Volume 06 (chapters 05, 11, 13, and 15) and restate the engineering laws already present in this chapter's surviving content.
+
+The dangling code fence at the original file end was removed as structural truncation damage.
+
+The Official Constitution is not recoverable from repository evidence and remains UNRESOLVED AUTHORITY.
+
+Restoration is documentation-only. It does not authorize implementation, contracts, or runtime changes.
+
+END OF RESTORED CHAPTER

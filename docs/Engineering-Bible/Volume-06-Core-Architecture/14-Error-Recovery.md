@@ -181,5 +181,89 @@ Every critical failure shall be classified before recovery.
 
 ---
 
-##
-```
+## Law 2
+
+UNRESOLVED AUTHORITY: The Engineering Bible source document for Volume 06, Chapter 14 (Error Recovery) is truncated at this point. Law 1 is preserved verbatim above. Any remaining laws require Primary Owner authority and are not fabricated in this restoration.
+
+---
+
+# Best Practices
+
+- Classify every failure before recovery.
+- Isolate failures to protect unrelated subsystems.
+- Validate every recovery before normal execution resumes.
+- Communicate meaningful failure and recovery outcomes.
+- Prioritize data integrity, runtime stability, and user trust.
+
+---
+
+# Anti-Patterns
+
+Avoid:
+
+- Recovery without classification.
+- Failures compromising unrelated components.
+- Resuming operation without recovery validation.
+- Hidden failures and silent recovery.
+- Uncontrolled termination.
+
+---
+
+# Failure Recovery
+
+If a subsystem fails:
+
+1. Detect the failure.
+2. Classify the failure.
+3. Select a recovery strategy.
+4. Execute recovery.
+5. Validate recovery.
+6. Resume normal operation.
+
+---
+
+# Engineering Checklist
+
+Before modifying the Error Recovery System:
+
+- Is every critical failure classified before recovery?
+- Are failures isolated?
+- Is recovery validated before resuming?
+- Are outcomes communicated appropriately?
+- Is runtime stability protected?
+
+---
+
+# Future Evolution
+
+The Error Recovery System shall evolve to support:
+
+- Documented, tested, and repeatable recovery procedures
+- Verified recovery before continuity is declared restored
+- Measurable recovery objectives
+
+(per Volume-09/10 Business Continuity)
+
+Future evolution shall preserve security, data integrity, and operational continuity.
+
+---
+
+# Official Constitution
+
+UNRESOLVED AUTHORITY: The official constitution text of this chapter is not recoverable from repository evidence. It requires Primary Owner authority and is not fabricated in this restoration.
+
+---
+
+# Documentation Status
+
+This chapter was restored during Phase 10 D2 documentation restoration (Owner-authorized).
+
+Restored sections (Best Practices, Anti-Patterns, Failure Recovery, Engineering Checklist, Future Evolution) restate this chapter's surviving content: the Engineering Principles (Graceful Degradation, Isolation, Safe Recovery, Transparency, Recovery Validation), the Recovery Lifecycle stages, and the Error Categories. Future Evolution cites Volume-09/10 Business Continuity.
+
+The dangling code fence at the original file end was removed as structural truncation damage.
+
+Engineering Laws beyond Law 1 and the Official Constitution are not recoverable from repository evidence and remain UNRESOLVED AUTHORITY.
+
+Restoration is documentation-only. It does not authorize implementation, contracts, or runtime changes.
+
+END OF RESTORED CHAPTER

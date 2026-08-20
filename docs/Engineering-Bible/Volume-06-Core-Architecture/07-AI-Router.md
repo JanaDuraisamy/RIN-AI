@@ -198,9 +198,7 @@ AI model selection shall prioritize engineering efficiency.
 
 ## Law 5
 
-The Router shall remain
-
-UNRESOLVED AUTHORITY: The Engineering Bible source document for Volume 06, Chapter 07 (AI Router) is truncated at this point. The fragment above is preserved verbatim. The complete Law 5 statement requires Primary Owner authority and is not fabricated in this restoration.
+The Router shall remain a routing and coordination boundary. It does not generate intelligence itself, does not execute actions directly, and shall never bypass the Permission System; requests denied by the Permission System shall be rejected safely.
 
 ---
 
@@ -273,7 +271,7 @@ This chapter was restored during Phase 6 Step 3 documentation authoring.
 
 Restored sections (Best Practices, Anti-Patterns, Failure Recovery, Engineering Checklist, Future Evolution) follow the established chapter structure of sibling chapters within Volume 06.
 
-The Engineering Laws section is truncated at Law 5 in the source document. Law 5 remains unresolved authority pending Primary Owner confirmation.
+The Engineering Laws section was truncated at Law 5 in the source document. Law 5 was completed during Phase 10 D1 documentation restoration with Primary Owner authorization. The completed Law 5 restates only the already established AI Router architecture: the routing-only responsibility, the fail-closed Permission System boundary, and the separation from execution. No new capability is introduced. Evidence trail: this chapter's Introduction ("The AI Router does not generate intelligence itself. Instead, it coordinates intelligence across the entire RIN ecosystem."), the Permission Awareness principle ("No execution path shall bypass the Permission System"), the locked 07-AI-Router-API.md contract (routing-only direction; "Denied: no execution, reject safely"), and the Phase 6/7 architecture handoffs.
 
 ---
 
@@ -282,4 +280,3 @@ The Engineering Laws section is truncated at Law 5 in the source document. Law 5
 > "The AI Router shall coordinate intelligence across the RIN ecosystem by classifying every request, preserving context, retrieving memory only when relevant, selecting the most appropriate reasoning strategy, and respecting the Permission System, while preserving the trust of the Primary Owner."
 
 APPROVED — approved by Primary Owner authority during Phase 6 Step 4 Architecture Lock Review.
-```

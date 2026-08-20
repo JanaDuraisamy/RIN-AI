@@ -1,3 +1,9 @@
+# Factory System
+
+> RESTORATION STATUS: The content below is preserved verbatim from the original repository bootstrap. It is a duplicate of Volume-06 Chapter 09 (Plugin Manager) — including its title — and is NOT a valid Factory System architecture. No authoritative Factory System source exists anywhere in the repository: only name-level references appear in the Volume-06 chapter index (Volume-06.md), the Nexus System architecture diagram (11-Nexus-System.md), the Communication Layer internal communication pair (15-Communication-Layer.md), the testing volumes (Volume-07), and the Agent Manager contract (07-Agent-Manager-API.md). Factory System architecture is RESTORATION NOT POSSIBLE FROM AVAILABLE EVIDENCE and remains UNRESOLVED AUTHORITY requiring Primary Owner authority.
+>
+> This chapter shall not be treated as an architectural source of truth until an authoritative Factory System architecture is authored by the Primary Owner or recovered from evidence.
+
 # Plugin Manager
 
 ## Introduction
@@ -208,4 +214,19 @@ If a plugin fails:
 1. Disable the plugin safely.
 2. Preserve Core stability.
 3.
-```
+
+---
+
+# Documentation Status
+
+This chapter was assessed during Phase 10 D2 documentation restoration (Owner-authorized).
+
+Assessment: DUPLICATE. The file is a byte-identical copy of Volume-06 Chapter 09 (Plugin Manager), preserved from the original repository bootstrap, and is truncated at the same point (Failure Recovery item 3). It is NOT a Factory System architecture.
+
+Factory System architecture is RESTORATION NOT POSSIBLE FROM AVAILABLE EVIDENCE and remains UNRESOLVED AUTHORITY. The duplicate content above is preserved only as evidence of the duplication; it must not be treated as Factory architecture.
+
+An authoritative Factory System chapter requires Primary Owner authority and was NOT authored in this restoration.
+
+Restoration is documentation-only. It does not authorize implementation, contracts, or runtime changes.
+
+END OF RESTORED CHAPTER

@@ -207,5 +207,56 @@ If a plugin fails:
 
 1. Disable the plugin safely.
 2. Preserve Core stability.
-3.
-```
+3. Notify the RIN Core.
+4. Record the plugin lifecycle event.
+
+---
+
+# Engineering Checklist
+
+Before modifying the Plugin Manager:
+
+- Is the Core protected from plugin modification?
+- Is every plugin validated before activation?
+- Are plugin permissions declared?
+- Is plugin execution observable?
+- Can plugin failures compromise runtime stability?
+- Are plugin lifecycle events recorded?
+
+---
+
+# Future Evolution
+
+The Plugin Manager shall evolve to support:
+
+- Official, certified, and community plugin categories
+- Plugin SDK integration
+- Marketplace-based distribution
+
+(per Volume-10/06 Plugin Ecosystem)
+
+Future evolution shall preserve Core stability, security validation, and permission awareness.
+
+---
+
+# Official Constitution
+
+UNRESOLVED AUTHORITY: The official constitution text of this chapter is not recoverable from repository evidence. It requires Primary Owner authority and is not fabricated in this restoration.
+
+---
+
+# Documentation Status
+
+This chapter was restored during Phase 10 D2 documentation restoration (Owner-authorized).
+
+The Failure Recovery list was completed with evidence-supported steps: "Notify the RIN Core" follows the sibling chapter convention (chapters 07 and 13), and "Record the plugin lifecycle event" restates this chapter's own Law 6 ("Every plugin lifecycle event shall be recorded").
+
+The Engineering Checklist restates this chapter's surviving Engineering Laws 1-6. Future Evolution cites Volume-10/06 Plugin Ecosystem.
+
+The dangling code fence at the original file end was removed as structural truncation damage.
+
+The Official Constitution is not recoverable from repository evidence and remains UNRESOLVED AUTHORITY.
+
+Restoration is documentation-only. It does NOT create a Plugin Manager contract and does NOT authorize implementation.
+
+END OF RESTORED CHAPTER
