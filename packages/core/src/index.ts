@@ -1,5 +1,6 @@
 export { ConfigurationService } from './configuration.js';
 export { RinCore, type RinCoreOptions } from './core.js';
+export type { RestartRequest, RestartResult } from './core.js';
 export {
   DEFAULT_RETRY_POLICY,
   DefaultErrorClassifier,

@@ -1,12 +1,19 @@
+import { randomUUID } from 'node:crypto';
+
 import {
+  API_VERSION,
   ServiceRegistryError,
   type AIRouter,
+  type AuditOutcome,
   type AuditSink,
   type CompatibilityInfo,
+  type CoreApiResponse,
   type EventBus,
   type MemoryEngine,
+  type PermissionDecision,
   type PermissionEvaluator,
   type PermissionRegistry,
+  type PermissionRequest,
   type RuntimeHealthStatus,
   type RuntimeHealthSummary,
   type RuntimeVersionInfo,
@@ -21,6 +28,28 @@ import { RequestRouter } from './request-router.js';
 import { InMemoryServiceRegistry } from './service-registry.js';
 import { RuntimeStateMachine, StateError } from './runtime-state.js';
 import { RUNTIME_VERSION, VersionService } from './version.js';
+
+const RESTART_ACTION = 'core:restart';
+const RESTART_RESOURCE = 'runtime';
+const GENERIC_ERROR_CODE = 'internal-error';
+
+export interface RestartRequest {
+  requestId: string;
+  timestamp: string;
+  callingComponent: string;
+  authContext?: string;
+  traceId?: string;
+}
+
+export type RestartResult = CoreApiResponse<null>;
+
+function isValidRestartRequest(request: RestartRequest): boolean {
+  return (
+    request.requestId.trim() !== '' &&
+    request.timestamp.trim() !== '' &&
+    request.callingComponent.trim() !== ''
+  );
+}
 
 export interface RinCoreOptions {
   eventBus: EventBus;
@@ -123,6 +152,99 @@ export class RinCore {
     this.health.setStartupVerified(false);
     this.initialize();
     this.startServices();
+  }
+
+  restartSeam(request: RestartRequest): RestartResult {
+    const traceId = request.traceId === undefined ? randomUUID() : request.traceId;
+    const startedAt = Date.now();
+    const fail = (message: string, code: string, outcome: AuditOutcome): RestartResult => {
+      this.auditRestart(traceId, request.callingComponent, outcome);
+      return {
+        status: 'error',
+        result: null,
+        error: { code, message, traceId },
+        executionTimeMs: Date.now() - startedAt,
+        version: API_VERSION,
+      };
+    };
+
+    if (!isValidRestartRequest(request)) {
+      return fail('invalid restart request', GENERIC_ERROR_CODE, 'error');
+    }
+    if (this.permissionEvaluator === null) {
+      return fail('permission evaluation unavailable', 'permission-unavailable', 'error');
+    }
+
+    let decision: PermissionDecision;
+    try {
+      decision = this.permissionEvaluator.evaluate(
+        this.buildRestartPermissionRequest(request, traceId),
+      );
+    } catch {
+      return fail('permission evaluation failed', 'permission-unavailable', 'error');
+    }
+
+    if (!decision.permitted) {
+      if (decision.status === 'confirmation-required') {
+        return fail('confirmation required for runtime restart', 'requires-confirmation', 'denied');
+      }
+      if (decision.status === 'restricted') {
+        return fail(
+          'runtime restart requires elevated authorization',
+          'requires-elevated-authorization',
+          'denied',
+        );
+      }
+      return fail('runtime restart permission denied', 'denied', 'denied');
+    }
+
+    try {
+      this.restart();
+    } catch {
+      return fail('runtime restart failed', GENERIC_ERROR_CODE, 'error');
+    }
+
+    this.auditRestart(traceId, request.callingComponent, 'success');
+    return {
+      status: 'success',
+      result: null,
+      error: null,
+      executionTimeMs: Date.now() - startedAt,
+      version: API_VERSION,
+    };
+  }
+
+  private buildRestartPermissionRequest(
+    request: RestartRequest,
+    traceId: string,
+  ): PermissionRequest {
+    const permission: PermissionRequest = {
+      action: RESTART_ACTION,
+      resource: RESTART_RESOURCE,
+      caller: request.callingComponent,
+      requestId: traceId,
+      timestamp: request.timestamp,
+    };
+    if (request.authContext !== undefined) {
+      permission.authContext = request.authContext;
+    }
+    return permission;
+  }
+
+  private auditRestart(traceId: string, actor: string, outcome: AuditOutcome): void {
+    if (this.auditSink === null) {
+      return;
+    }
+    this.auditSink.append({
+      id: randomUUID(),
+      actor,
+      action: RESTART_ACTION,
+      resource: RESTART_RESOURCE,
+      timestamp: new Date().toISOString(),
+      outcome,
+      metadata: {},
+      requestId: traceId,
+    });
   }
 
   getRuntimeVersion(): RuntimeVersionInfo {
